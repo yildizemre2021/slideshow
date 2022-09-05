@@ -6,31 +6,137 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Verdana, sans-serif;
+        }
+
+        .softSlides {
+            display: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        .soft-slideshow {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .numbers {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        .bullets {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        .out {
+            -webkit-animation-name: out;
+            -webkit-animation-duration: 1.5s;
+            animation-name: out;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes out {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes out {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .text {
+                font-size: 11px
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="soft-slideshow">
-        <div class="softSlides out"></div>
-        <div class="numbers">1 / 3</div>
-        <img src="https://www.w3schools.com/HOWTO/img_mountains.jpg" style="width: 100%;" />
-        <div class="text"> Dag Resmi</div>
-
-        <div class="softSlides out"></div>
-        <div class="numbers">2 / 3</div>
-        <img src="https://www.w3schools.com/HOWTO/img_mountains.jpg" style="width: 100%;" />
-        <div class="text"> Dag Resmi</div>
-
-        <div class="softSlides out"></div>
-        <div class="numbers">3 / 3</div>
-        <img src="https://www.w3schools.com/HOWTO/img_mountains.jpg" style="width: 100%;" />
-        <div class="text"> Dag Resmi</div>
-
+        <div class="softSlides out">
+            <div class="numbers">1 / 3</div>
+            <img src="https://www.w3schools.com/HOWTO/img_mountains.jpg" style="width: 100%;" />
+            <div class="text"> Dag Resmi</div>
+        </div>
+        <div class="softSlides out">
+            <div class="numbers">2 / 3</div>
+            <img src="https://magictoolbox.sirv.com/images/magicslideshow/places-01-1075.jpg" style="width: 100%;" />
+            <div class="text"> Dag Resmi</div>
+        </div>
+        <div class="softSlides out">
+            <div class="numbers">3 / 3</div>
+            <img src="https://wowslider.com/sliders/demo-37/data1/images/waterandmountains.jpg" style="width: 100%;" />
+            <div class="text"> Dag Resmi</div>
+        </div>
         <div style="text-align:center ;">
             <span class="bullets"></span>
             <span class="bullets"></span>
             <span class="bullets"></span>
         </div>
     </div>
+    <script>
+        var slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("softSlides");
+            var bullets = document.getElementsByClassName("bullets");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < bullets.length; i++) {
+                bullets[i].className = bullets[i].className.replace(" active", "");
+            }
+
+            slides[slideIndex - 1].style.display = "block";
+            bullets[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 3000);
+        }
+    </script>
 </body>
 
 </html>
